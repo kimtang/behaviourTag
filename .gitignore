@@ -1,0 +1,12 @@
+node_modules
+.tmp
+bower_components
+qlib
+yak/log
+system/tick/sym
+system/btick/sym
+system/btick/log
+system/btick/visualize
+system/btick/pm2.json
+system/btick/sym.json
+system/btick/cfg.JSON
