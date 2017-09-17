@@ -84,7 +84,7 @@ trace1:{ [h;mode;obj] `.bt.history insert data:cols[.bt.history]# h,(`mode`etime
 trace2:{ [h;mode;obj] `.bt.history insert data:cols[.bt.history]# h,(`mode`etime`eseq!(mode;.z.P;inc[])),obj,`result`arg!({};{}); outputTrace data; }
 trace:trace0
 
-outputTrace0:{[data] .bt.stdOut0[ $[ null data`error;`ino;`error] ;`bt] .bt.print["%action%:%mode%:error"] data }
+outputTrace0:{[data] .bt.stdOut0[ $[ null data`error;`info;`error] ;`bt] .bt.print["%action%:%mode%:%error%"] data }
 outputTrace1:{[data]  }
 
 outputTrace:outputTrace0
