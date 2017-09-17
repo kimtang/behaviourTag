@@ -77,7 +77,21 @@ behaviours:2!flip`trigger`sym`dontcare!()
 repository:2!flip`sym`mode`fnc`arg!()
 sel:{ s:s!s:distinct `,exec sym from .bt.repository where mode = y;.bt.repository (s x),y}
 
-trace:{ [h;mode;obj] `.bt.history insert cols[.bt.history]# h,(`mode`etime`eseq!(mode;.z.P;inc[])),obj,enlist[`result]!enlist{};}
+
+
+trace0:{ [h;mode;obj] `.bt.history insert data:cols[.bt.history]# h,(`mode`etime`eseq!(mode;.z.P;inc[])),obj; outputTrace data; }
+trace1:{ [h;mode;obj] `.bt.history insert data:cols[.bt.history]# h,(`mode`etime`eseq!(mode;.z.P;inc[])),obj,enlist[`result]!enlist{}; outputTrace data; }
+trace2:{ [h;mode;obj] `.bt.history insert data:cols[.bt.history]# h,(`mode`etime`eseq!(mode;.z.P;inc[])),obj,`result`arg!({};{}); outputTrace data; }
+trace:trace0
+
+outputTrace0:{[data] .bt.stdOut0[ $[ null data`error;`ino;`error] ;`bt] .bt.print["%action%:%mode%:error"] data }
+outputTrace1:{[data]  }
+
+outputTrace:outputTrace0
+
+
+
+
 
 eiff:{[sym;allData]
  h:hist sym;  

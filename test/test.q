@@ -88,3 +88,12 @@ t) ebe38afa-407f-cfdf-ae7a-2c2ff77542a6
  min `d in exec action from .bt.history where not null error
 
 .bt.action[`.test.printresult]()!();
+
+
+/
+
+
+getenv `mode
+
+
+
