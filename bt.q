@@ -69,6 +69,7 @@ getArg:{getArg0[type x]x }
 execute:{[fnc;arg] fnc . arg getArg fnc }
 
 md:{(`,x)!({};y)}
+getDelim:{ $["\\" in string x;"\\";"/"] }
 
 seq:0
 inc:{seq+:1;seq}
@@ -111,9 +112,10 @@ ecatch:{[sym;allData;error]
 
 edelay:{[sym;allData]
  h:hist sym;
- delay:.bt.sel[sym;`delay];  
- r:@[{[fnc;arg] `result`error!(fnc . arg;`) }delay`fnc;arg:allData delay`arg;{`result`error!(()!();`$x)}];
- if[(not `noDelay=r . `result`tipe) or not null r`error ;trace[h;`delay; (enlist[`arg]!enlist arg), r]];
+ delay:.bt.sel[sym;`delay];
+ r: @[{[fnc;arg] `result`error!(fnc . arg;`) }delay`fnc;arg:allData delay`arg;{`result`error!(()!();`$x)}];
+ / if[(not `noDelay=r . `result`tipe) or not null r`error ;trace[h;`delay; (enlist[`arg]!enlist arg), r]];
+ if[not null r`error ;trace[h;`delay; (enlist[`arg]!enlist arg), r]];
  r
  } 
 
@@ -136,10 +138,11 @@ trigger:{[trigger0;allData]
  allData0:allData,enlist[`allData]!enlist allData;
  syms:distinct exec sym from .bt.behaviours where trigger = trigger0;
  result:update sym:syms from (flip`result`error!()),.bt.edelay[;allData0]@'syms;
- result:{update sym:x`sym from (flip`tipe`time!()),x`result} exec result,sym from result where null error; 
+ result:{update sym:x`sym from (flip`tipe`time!()),x`result} exec result,sym from result where null error;
  noDelay:select from result where tipe =`noDelay;
- delay:select from result where not tipe =`noDelay;
- delay:update scheduleAt:.z.P + time from delay where tipe=`in;
+ delayAt:update scheduleAt:time from select from result where tipe =`at;
+ delayIn:update scheduleAt:.z.P + time from select from result where tipe =`in;
+ delay:delayAt,delayIn;
  {[allData;x].bt.scheduleAt[`.bt.action;(x`sym;allData);x`scheduleAt]}[allData]@'delay;
  l:enlist[()!()],{[allData;sym]@[.bt.action[;allData];sym;{enlist[`error]!enlist `$x}] }[allData]@'exec sym from noDelay;
  allData,raze l where 99h=type each l
