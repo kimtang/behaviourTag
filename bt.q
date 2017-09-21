@@ -115,7 +115,8 @@ edelay:{[sym;allData]
  delay:.bt.sel[sym;`delay];
  r: @[{[fnc;arg] `result`error!(fnc . arg;`) }delay`fnc;arg:allData delay`arg;{`result`error!(()!();`$x)}];
  / if[(not `noDelay=r . `result`tipe) or not null r`error ;trace[h;`delay; (enlist[`arg]!enlist arg), r]];
- if[not null r`error ;trace[h;`delay; (enlist[`arg]!enlist arg), r]];
+ trace[h;`delay; (enlist[`arg]!enlist arg), r];
+ / if[not null r`error ;trace[h;`delay; (enlist[`arg]!enlist arg), r]];
  r
  } 
 
