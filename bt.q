@@ -18,6 +18,12 @@ scheduleIn:{[fnc;arg;scheduleIn] `.bt.tme insert `id`fnc`arg`res`scheduleAt`runA
 
 system "t 400";
 
+/ helper function for parsing formulas
+parseC:{(parse .bt.print["select from t where %0"] enlist x) 2}
+parseB:{(parse .bt.print["select by %0 from t"] enlist x) 3}
+parseA:{(parse .bt.print["select %0 from t"] enlist x) 4}
+
+
 
 cfg0:()!()
 cfg0[0nh]:{x}
@@ -37,7 +43,7 @@ stdOut0:{[level;library;msg] level: (`info`error!("INFO ";"ERROR")) level;0N!.bt
 
 putArg:{
  h:exec from .bt.history where seq=x;
- b:.bt.repository (h`action),`behaviour;
+ b:.bt.repository h`action`mode;
  {x set' y } . (b;h)@\:`arg
  }
 
