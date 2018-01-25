@@ -72,7 +72,7 @@ getArg0[100h]:{last 2#get x}
 getArg0[104h]:{r:getArg first arg:get x;r where (::)~'c#(1_arg),(c:count[r])#(::)}
 getArg:{getArg0[type x]x }
 
-execute:{[fnc;arg] fnc . arg getArg fnc }
+execute:{[fnc;arg] fnc . ((enlist[ `allData]!enlist[arg]),arg) getArg fnc }
 
 md:{(`,x)!({};y)}
 getDelim:{ $["\\" in string x;"\\";"/"] }
@@ -176,16 +176,11 @@ addDelay:{[sym;fnc] addRepository[sym;`delay;fnc]; }
 always_true:{1b}
 throw_error:{[error]'error}
 omit_error:{[error]}
-do_nothing:{}
-no_delay:{`tipe`time!(`noDelay;0np)}
+do_nothing:{[allData]}
+no_delay:{[allData]`tipe`time!(`noDelay;0np)}
 
 addRepository[`;`placeholder]{};
 addBehaviour[`]`.bt.do_nothing
 addIff[`]`.bt.always_true
 addCatch[`]`.bt.throw_error
 addDelay[`]`.bt.no_delay
-
- 
-
-
-
