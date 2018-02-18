@@ -162,6 +162,10 @@ add:{[trigger0;sym;behaviour] trigger0:((),trigger0) except `;
  addBehaviour[sym]behaviour;
  }
 
+addOnlyBehaviour:{[trigger0;sym] trigger0:((),trigger0) except `;
+ {`.bt.behaviours upsert x,1b}@' ((),trigger0),\:sym;
+ }
+
 addRepository:{[sym;mode;fnc]`.bt.repository upsert (sym;mode;fnc;getArg fnc)}
 addBehaviour:{[sym;fnc] addRepository[sym;`behaviour;fnc]; }
 addIff:{[sym;fnc] addRepository[sym;`iff;fnc]; }
