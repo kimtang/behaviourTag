@@ -225,7 +225,7 @@ testAction:{[sym;allData]
  `testresult set testReport[];
  `errors set errors:raze(
 	update mode:`action_with_error  from select from  `testresult where mode=`action,not null error
-	;update mode:`action_with_wrong_result  from select from  `testresult where mode=`action,not result~\:1b
+	;update mode:`action_with_wrong_result  from select from  `testresult where mode=`action,not result[;`testresult]~\:1b
 	;update mode:`no_action_with_action  from select from  `testresult where mode=`no_action,not null time
 	;update mode:`catch_null_error  from select from  `testresult where mode=`catch,null error);
  .bt.stdOut0[`info;`test] $[cnt:count errors;.bt.print["There are %0 errors"] cnt ;"There are no errors"];
