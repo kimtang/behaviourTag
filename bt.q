@@ -36,8 +36,8 @@ loadBehaviour:{[path;file]
  }
 
 
-stdOut:{[level;msg] level: (`info`error!("INFO ";"ERROR")) level;0N!.bt.print["%level%|%time%|%msg%"] `level`msg`time!(level;msg;.z.t) }
-stdOut0:{[level;library;msg] level: (`info`error!("INFO ";"ERROR")) level;0N!.bt.print["%level%|%time%|%library%|%msg%"] `level`msg`time`library!(level;msg;.z.t;library) }
+stdOut:{[level;msg] level: (`info`error!("INFO ";"ERROR")) level;1 .bt.print["%level%|%time%|%msg%"] `level`msg`time!(level;msg;.z.t) }
+stdOut0:{[level;library;msg] level: (`info`error!("INFO ";"ERROR")) level;1 .bt.print["%level%|%time%|%library%|%msg%"] `level`msg`time`library!(level;msg;.z.t;library) }
 
 / debug functions
 
