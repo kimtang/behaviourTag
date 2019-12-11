@@ -16,7 +16,7 @@ scheduleIn:{[fnc;arg;scheduleIn] `.bt.tme insert `id`fnc`arg`res`scheduleAt`runA
 
 .z.ts:.bt.ts
 
-system "t 400";
+system "t 300";
 
 / helper function for parsing formulas
 parseC:{(parse .bt.print["select from t where %0"] enlist x) 2}
@@ -36,8 +36,8 @@ loadBehaviour:{[path;file]
  }
 
 
-stdOut:{[level;msg] level: (`info`error!("INFO ";"ERROR")) level;1 .bt.print["%level%|%time%|%msg%"] `level`msg`time!(level;msg;.z.t) }
-stdOut0:{[level;library;msg] level: (`info`error!("INFO ";"ERROR")) level;1 .bt.print["%level%|%time%|%library%|%msg%"] `level`msg`time`library!(level;msg;.z.t;library) }
+stdOut:{[level;msg] level: (`info`error!("INFO ";"ERROR")) level;1 .bt.print["%level%|%time%|%msg%\n"] `level`msg`time!(level;msg;.z.t) }
+stdOut0:{[level;library;msg] level: (`info`error!("INFO ";"ERROR")) level;1 .bt.print["%level%|%time%|%library%|%msg%\n"] `level`msg`time`library!(level;msg;.z.t;library) }
 
 / debug functions
 
