@@ -41,6 +41,11 @@ stdOut0:{[level;library;msg] level: (`info`error!("INFO ";"ERROR")) level;1 .bt.
 
 / debug functions
 
+putAction:{
+ seq0:max exec seq from .bt.history where action=x,mode = `behaviour;
+ .bt.putArg seq0
+ }
+
 putArg:{
  h:exec from .bt.history where seq=x;
  b:.bt.repository h`action`mode;
