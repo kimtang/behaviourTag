@@ -90,6 +90,8 @@ t) ebe38afa-407f-cfdf-ae7a-2c2ff77542a6
 .bt.action[`.test.printresult]()!();
 
 
+exit 0 
+
 /
 
 
