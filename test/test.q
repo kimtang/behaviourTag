@@ -89,8 +89,7 @@ t) ebe38afa-407f-cfdf-ae7a-2c2ff77542a6
 
 .bt.action[`.test.printresult]()!();
 
-
-exit 0 
+exit $[min 1_(0!.t.t)`result;0;1]
 
 /
 
